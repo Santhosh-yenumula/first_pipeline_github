@@ -1,9 +1,6 @@
 name: Deploy Flask App
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 env:
   HEALTHCHECK_URL: http://34.228.255.233:50000
@@ -41,7 +38,7 @@ jobs:
           nohup python3 app.py &
   health:
     needs: Build-test-deploy
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Health check
